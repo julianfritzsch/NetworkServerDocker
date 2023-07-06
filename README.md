@@ -4,11 +4,12 @@ Docker container for <a href=https://github.com/julianfritzsch/NetworkServer.jl 
 Find the container on <a href=https://hub.docker.com/r/julianfritzsch/networkserver target=_blank>Docker Hub</a>.
 
 # Usage
-To use the server without Gurobi simply type
+By default the container uses the Gurobi license for the HEVS.
+If you are in the HEVS network or want to use Ipopt simply run
 ```bash
 docker run -dp 8080:8080 julianfritzsch/networkserver
 ```
-To use Gurobi, you need to pass the license to the container.
+To use a different Gurobi license, you need to pass the license to the container.
 To do so type
 ```bash
 docker run --volume=<path/to/license>:/opt/gurobi/gurobi.lic:ro -dp 8080:8080 julianfritzsch/networkserver
