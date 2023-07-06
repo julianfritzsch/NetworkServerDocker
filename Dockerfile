@@ -2,7 +2,6 @@ FROM debian:bookworm as build
 ARG GRB_VERSION=10.0.0
 ARG GRB_SHORT_VERSION=10.0
 
-# install gurobi package and copy the files
 WORKDIR /opt
 
 RUN arch="$(dpkg --print-architecture)"; \
@@ -47,8 +46,8 @@ RUN arch="$(dpkg --print-architecture)"; \
     esac;\
     export PATH=$PATH:$GUROBI_HOME/bin; \
     export LD_LIBRARY_PATH=$GUROBI_HOME/lib; \
+    echo "TOKENSERVER=gurobilm.hevs.ch" >> gurobi.lic;\
     julia -e 'using Pkg; Pkg.add(url="https://github.com/julianfritzsch/NetworkServer.jl"); Pkg.precompile()'
-#
 
 EXPOSE 8080
 
